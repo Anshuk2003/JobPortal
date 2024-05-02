@@ -1,0 +1,8 @@
+/* Any styling we want to override our default antd styling*/
+.ant-form-item {
+    margin: 0px !important;
+}
+
+.ant-form-item-label {
+    padding: 0 !important;
+}
