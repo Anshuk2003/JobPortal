@@ -22,6 +22,11 @@ function Filters({filters,setFilters,getData}:{filters:any,setFilters:any,getDat
           <option value="India">India</option>
           <option value="USA">USA</option>
           <option value="UK">UK</option>
+          <option value="Pune">Pune</option>
+          <option value="Nagpur">Nagpur</option>
+          <option value="Mumbai">Mumbai</option>
+          <option value="Banglore">Banglore</option>
+          <option value="Delhi">Delhi</option>
           <option value="Canada">Canada</option>
         </select>
       </div>

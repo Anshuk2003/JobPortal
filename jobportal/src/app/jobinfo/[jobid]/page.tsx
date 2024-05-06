@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { useRouter, useParams } from "next/navigation";
 import PageTitle from "@/components/PageTitle";
-import { Button, Col, Divider, Form, Row, message } from "antd";
+import { Button, Col, Divider, Form, Row, Table, message } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import { setLoading } from "@/redux/loaderSlice";
@@ -99,7 +99,8 @@ function JobInfo() {
           <Col span={24} className="flex flex-col gap-2">
             <h1 className="text-md">Job Description</h1>
             <Divider />
-            <span>{jobData.description}</span>
+            
+            <p style={{whiteSpace: 'pre-wrap'}}>{jobData.description}</p>
             {applications.length > 0 && (
               <span className="my-3 info p-3">
                 You have already applied for this job. Please wait for the

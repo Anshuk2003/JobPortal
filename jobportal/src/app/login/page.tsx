@@ -6,6 +6,7 @@ import axios from 'axios'
 import { useRouter } from 'next/navigation'
 import { useDispatch } from 'react-redux'
 import { setLoading } from '@/redux/loaderSlice'
+import PageTitle from '@/components/PageTitle'
 
 function Login() {
   const dispatch = useDispatch();
@@ -25,9 +26,9 @@ function Login() {
   }
   return (
     <div className="flex justify-center h-screen items-center bg-primary">
-      <div className='card p-5 w-450'>
-        <h1 className='text-xl'>Job Portal - Login</h1>
-        <hr />
+        <div className='card p-5 w-450'>
+        <h1 className='text-xl'>Job Hunt - Login</h1>
+        <hr /> 
         <Form
           layout='vertical'
           className='flex  flex-col gap-5'

@@ -33,15 +33,20 @@ function LayoutProvider({ children }: { children: React.ReactNode }) {
       icon: "ri-file-list-2-line",
     },
     {
-      name: "Setting",
-      path: "/setting",
-      icon: "ri-settings-5-line"
+      name: "About us",
+      path: "/about",
+      icon: "ri-team-line"
     },
     {
       name: "Saved",
       path: "/saved",
       icon: "ri-save-line",
-    }
+    },
+    // {
+    //   name: "Recommendation",
+    //   path: "/recomendation",
+    //   icon: "ri-save-line",
+    // }
   ])
 
   const pathName = usePathname();
@@ -55,6 +60,16 @@ function LayoutProvider({ children }: { children: React.ReactNode }) {
         const tempMenuItems: any = menuItems
         tempMenuItems[2].name = 'Posted Jobs'
         tempMenuItems[2].path = "/jobs"
+        setMenuItems(tempMenuItems);
+        tempMenuItems[4].name = ''
+        tempMenuItems[4].path = ""
+        tempMenuItems[4].icon = ""
+        setMenuItems(tempMenuItems);
+      }
+      if (!isEmployer) {
+        const tempMenuItems: any = menuItems
+        tempMenuItems[4].name = 'Recommendation'
+        tempMenuItems[4].path = "/recomendation"
         setMenuItems(tempMenuItems);
       }
       dispatch(setCurrentUser(response.data.data))
@@ -109,10 +124,12 @@ function LayoutProvider({ children }: { children: React.ReactNode }) {
             </div>
           ) : (
             currentUser && (<div className='layout-parent'>
-              <div className="sidebar">
+              <div className="sidebar" 
+              style={{width: isSidebarExpanded ? "350px":"auto"}}
+              >
                 <div className='logo'>
                   {isSidebarExpanded && <img width="40" height="40" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSs5KdGoeO-6NRegLC26rw5gM0h0dkXKV6osRfHA5Bswg&s" alt="permanent-job" />}
-                  {isSidebarExpanded && <h1>JOB PORTAL</h1>}
+                  {isSidebarExpanded && <h1>Job Hunt</h1>}
                   {!isSidebarExpanded && (
                     <div className='short'>
                       <img width="40" height="40" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSs5KdGoeO-6NRegLC26rw5gM0h0dkXKV6osRfHA5Bswg&s" alt="permanent-job" />
@@ -152,14 +169,14 @@ function LayoutProvider({ children }: { children: React.ReactNode }) {
                   }
                 </div>
 
-                <div className='user-info'>
+                <div className='user-info flex justify-between'>
                   {isSidebarExpanded && (
                     <div className='flex flex-col'>
                       <span>
                         {currentUser?.name}
                       </span>
                       <span>
-                        {currentUser?.email}
+                        {currentUser?.userType === "employer" ? "Employer" : "Employee"}
                       </span>
                     </div>)
                   }

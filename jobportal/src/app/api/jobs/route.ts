@@ -38,7 +38,7 @@ export async function GET(request: NextRequest) {
     if (searchText && searchText !== "") {
       filtersObject["title"] = { $regex: searchText, $options: "i" };
     }
-
+// console.log(filtersObject)
     if (location && location !== "") {
       filtersObject["location"] = { $regex: location, $options: "i" };
     }

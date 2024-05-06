@@ -19,7 +19,7 @@ export default function Home() {
   const fetchJobs = async () => {
     try {
       dispatch(setLoading(true));
-      const response = await axios.get(`/api/jobs`,{params:filters});
+      const response = await axios.get(`/api/jobs`, { params: filters });
       console.log(response.data.data);
       setJobs(response.data.data);
     } catch (error: any) {
@@ -34,43 +34,45 @@ export default function Home() {
   }, [])
   return (
     <div>
-      <Filters 
-      filters={filters} 
-      setFilters={setFilters}
-      getData={fetchJobs}
+      <Filters
+        filters={filters}
+        setFilters={setFilters}
+        getData={fetchJobs}
       />
       <Row
-        gutter={[16, 16]}
-        className="gap-3"
+        
+
       >
         {
           jobs.map((job: any) => (
-            <Col span={8} className="card flex flex-col gap-2 py-3 cursor-pointer"
+            <Col span={8} className="p-2"
               key={job._id}
               onClick={() => router.push(`/jobinfo/${job._id}`)}
             >
-              <h1 className="text-md">{job.title}</h1>
+              <div className="card flex flex-col gap-2 py-3 cursor-pointer p-3">
+                <h1 className="text-md">{job.title}</h1>
+                
+                <Divider />
 
-              <Divider />
+                <div className="flex justify-between">
+                  <span>Company</span>
+                  <span>{job.user.name}</span>
+                </div>
 
-              <div className="flex justify-between">
-                <span>Company</span>
-                <span>{job.user.name}</span>
-              </div>
+                <div className="flex justify-between">
+                  <span>Location</span>
+                  <span>{job.location}</span>
+                </div>
 
-              <div className="flex justify-between">
-                <span>Location</span>
-                <span>{job.location}</span>
-              </div>
+                <div className="flex justify-between">
+                  <span>Salary</span>
+                  <span>{job.salaryFromRange} - {job.salaryToRange}</span>
+                </div>
 
-              <div className="flex justify-between">
-                <span>Salary</span>
-                <span>{job.salaryFromRange} - {job.salaryToRange}</span>
-              </div>
-
-              <div className="flex justify-between">
-                <span>Work Mode</span>
-                <span>{job.workMode}</span>
+                <div className="flex justify-between">
+                  <span>Work Mode</span>
+                  <span>{job.workMode}</span>
+                </div>
               </div>
             </Col>
           ))

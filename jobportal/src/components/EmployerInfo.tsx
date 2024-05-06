@@ -67,9 +67,9 @@ function EmployerInfo({ employerInfo }: { employerInfo: any }) {
       <Divider />
       <Col span={24}>
         <h1 className="text-md"><b>About</b></h1>
-        <span>
+        <p style={{whiteSpace:'pre-wrap'}}>
           {employerInfo.about}
-        </span>
+        </p>
       </Col>
     </Row>
   )

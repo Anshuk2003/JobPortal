@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { Col, Form, Row } from "antd";
+import { Button, Col, Form, Row } from "antd";
 
 const JobPostForm = () => {
     return (
@@ -63,7 +63,7 @@ const JobPostForm = () => {
                     </select>
                 </Form.Item>
             </Col>
-
+            
             <Col span={8}>
                 <Form.Item label="Salary From Range" name="salaryFromRange">
                     <input type="number" />
@@ -76,6 +76,7 @@ const JobPostForm = () => {
                 </Form.Item>
             </Col>
         </Row>
+        
     );
 }
 

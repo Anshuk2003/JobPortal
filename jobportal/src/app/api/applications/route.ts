@@ -69,6 +69,7 @@ export async function GET(request: NextRequest) {
           path: "user",
         },
       });
+
     return NextResponse.json({
       message: "Jobs fetched successfully",
       data: applications,

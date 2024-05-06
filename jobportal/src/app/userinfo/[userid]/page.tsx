@@ -9,7 +9,7 @@ import PageTitle from "@/components/PageTitle";
 import EmployerInfo from "@/components/EmployerInfo";
 import EmployeeInfo from "@/components/EmployeeInfo";
 import { useDispatch } from "react-redux";
-import mongoose from "mongoose";
+
 
 function UserInfo() {
   const [userInfo, setUserInfo] = useState<any>(null);
@@ -38,8 +38,8 @@ function UserInfo() {
     userInfo && (
       <div>
         <PageTitle
-          title={`${userInfo.userType === "employer" ? "Employer" : "Employee"
-            } Info`}
+          title={`${userInfo.userType === "employer" ? "About Company" : "Candidate Profile"
+            }`}
         />
 
         {userInfo.userType === "employer" ? (
