@@ -19,7 +19,7 @@ export async function POST(request: NextRequest) {
         if (!user) {
             throw new Error("User does not exists");
         }
-
+        
         //compare passwords
         const validPassword = await bcrypt.compare(
             reqBody.password,
@@ -27,7 +27,7 @@ export async function POST(request: NextRequest) {
         );
 
         if (!validPassword) {
-            throw Error("Invalid Password");
+            throw Error("Check your Credentials");
         }
 
         //create token
@@ -40,18 +40,17 @@ export async function POST(request: NextRequest) {
             expiresIn: "1d",
         });
 
-        const response = NextResponse.json(
-            { message: "login sucessful" },
-            { status: 200 }
-        )
+            // Return success message and set token as cookie
+            const response = NextResponse.json(
+                { message: "Login successful" },
+                { status: 200 }
+            );
 
-        //set cookies
-        response.cookies.set("token", token, {
-            httpOnly: true,
-            maxAge: 60 * 60 * 24 * 1000,
-        });
-
-        return response;
+            response.cookies.set("token", token, {
+                httpOnly: true,
+                maxAge: 60 * 60 * 24 * 1000, // 1 day expiration
+            });
+            return response;
     }
     catch (error: any) {
         return NextResponse.json(

@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 import { unique } from "next/dist/build/utils";
 
 const userSchema = new mongoose.Schema(
-    {   
+    {
         userType: {
             type: String,
             required: true,
@@ -17,9 +17,9 @@ const userSchema = new mongoose.Schema(
             required: true,
             unique: true,
         },
-        phone:{
-            type:String,
-            required:false
+        phone: {
+            type: String,
+            required: false
         },
         password: {
             type: String,
@@ -63,9 +63,9 @@ const userSchema = new mongoose.Schema(
             type: [],
             required: false
         },
-        links:{
-            type:[],
-            required:false
+        links: {
+            type: [],
+            required: false
         },
         //additionall fields for employer
 
@@ -89,7 +89,12 @@ const userSchema = new mongoose.Schema(
             type: String,
             required: false,
         },
-
+        isVerified:{
+            type:Boolean,
+            default:false
+        },
+        verifyToken: String,
+        verifyTokenExpiry: Date
     },
     {
         timestamps: true

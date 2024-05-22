@@ -11,19 +11,19 @@ import { useDispatch, useSelector } from 'react-redux'
 function Recommendation() {
 
     const { currentUser } = useSelector((state: any) => state.users)
-    console.log(currentUser)
+    //console.log(currentUser)
     const [jobs, setJobs] = useState([]);
     const searchData = { searchText: (currentUser.skills.map((item: any) => (item.technology))).toString() };
     const router = useRouter();
     //const userSkills = currentUser.skills.map((skill:any) => skill.technology);
     const dispatch = useDispatch();
-    console.log("searchText", searchData)
+    //console.log("searchText", searchData)
     //console.log("userSkill",userSkills)
     const fetchjob = async () => {
         try {
             dispatch(setLoading(true));
             const response = await axios.get(`/api/recommendation`, { params: searchData });
-            console.log("Response ", response.data.data);
+            // console.log("Response ", response.data.data);
             setJobs(response.data.data);
         } catch (error: any) {
             message.error(error.message);

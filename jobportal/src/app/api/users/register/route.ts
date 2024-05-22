@@ -3,6 +3,8 @@ import { NextRequest, NextResponse } from "next/server";
 import User from '@/models/userModel'
 import bcrypt from "bcryptjs"
 import { message } from "antd";
+import { sendMail } from "@/helpers/mailer";
+
 //whenever this file is accessed it will execute connectDb
 connectDB();
 
@@ -13,6 +15,7 @@ export async function POST(request: NextRequest) {
 
         //check if user is already exist or not
         const reqBody = await request.json();
+
         const user = await User.findOne({ email: reqBody.email })
         if (user) {
             throw new Error("User already exists");
@@ -24,7 +27,9 @@ export async function POST(request: NextRequest) {
         reqBody.password = hashedPassword;
 
         //create user
-        await User.create(reqBody);
+        const newUser= await User.create(reqBody);
+        await sendMail({email:reqBody.email, emailType: "VERIFY", userId: newUser._id})
+
         return NextResponse.json(
             { message: "User created Successfully", success: true },
             { status: 201 }

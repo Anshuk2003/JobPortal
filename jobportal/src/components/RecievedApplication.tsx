@@ -104,6 +104,7 @@ function RecievedApplications({
         <Modal title={`Applications for ${selectedJob.title}`}
             open={showApplications}
             onCancel={() => setShowApplications(false)}
+            onOk={() => setShowApplications(false)}
             width={1200} 
         >
             <div className="my-3">

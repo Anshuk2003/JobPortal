@@ -11,9 +11,8 @@ export const sendEmail = async ({to, type, subject, text, html}:any) => {
             }
         });
 
-
         await transporter.sendMail({
-            from: "JobHunt",
+            from: "JobHunt@gmail.com",
             to: to,
             subject,
             text,

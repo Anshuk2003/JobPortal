@@ -43,7 +43,7 @@ function About() {
                     <div className="flex gap-2 my-2" >
                         <div>
                         <h2 style={{ fontFamily: "'Comic Sans MS', cursive, sans-serif" }}>Swarnim Pol</h2>
-                        <p><span style={{ fontStyle: "italic", color: "#351281", fontWeight: "bold" }}>"A dynamic competitive coder with exceptional communication and management skills. With a passion for problem-solving and a knack for effective collaboration, I excels in navigating challenges and delivering innovative solutions. Ready to drive impactful projects forward with a unique blend of technical prowess and leadership abilities."</span></p>
+                        <p><span style={{ fontStyle: "italic", color: "#351281", fontWeight: "bold" }}>"A dynamic competitive coder with exceptional communication and management skills. With a passion for problem-solving and a knack for effective collaboration, I excel in navigating challenges and delivering innovative solutions. Ready to drive impactful projects forward with a unique blend of technical prowess and leadership abilities."</span></p>
                         </div>
                         <img src="/images/swarnim.jpeg" alt='Developer' style={{width:200,height:200}}></img>
                     </div>

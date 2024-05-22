@@ -103,6 +103,7 @@ function LayoutProvider({ children }: { children: React.ReactNode }) {
     }
   }
 
+
   return (
     <html lang="en">
       <head>
@@ -118,12 +119,15 @@ function LayoutProvider({ children }: { children: React.ReactNode }) {
         >
           {loading && <Loaders />}
           {/* if route is public(login/register) dont show layout */}
-          {pathName === "/login" || pathName == "/register" ? (
+          {pathName === "/login" || pathName == "/register" || pathName== "/verifyemail" ? (
             <div>
               {children}
             </div>
           ) : (
-            currentUser && (<div className='layout-parent'>
+            currentUser && (
+            <div className='layout-parent'>
+               {currentUser.isVerified ? (
+                  <>
               <div className="sidebar" 
               style={{width: isSidebarExpanded ? "350px":"auto"}}
               >
@@ -143,7 +147,8 @@ function LayoutProvider({ children }: { children: React.ReactNode }) {
                     <i
                       className="ri-close-line"
                       onClick={() => setIsSidebarExpanded(!isSidebarExpanded)}
-                    ></i>)}
+                    ></i>
+                    )}
                 </div>
 
                 <div className='menu-items'>
@@ -183,16 +188,42 @@ function LayoutProvider({ children }: { children: React.ReactNode }) {
                   <i className="ri-logout-box-r-line" onClick={onLogout}></i>
                 </div>
               </div>
+
+
               <div className="body">
-                {children}
-              </div>
+                    {children }
+                    </div>
+                  </>
+                 ) : (
+                    <div style={styles.verificationMessage}>
+                      Please verify your email to access this content!
+                      <br/>
+                      Go to your registered mail click on link or copy paste link and get started.
+                    </div>
+                  )}
             </div>)
-          )
-          }
+          )}
         </ConfigProvider>
       </body>
     </html>
   )
 }
+
+const styles = {
+  verificationMessage: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: '100vh',
+    width:"100vw",
+    fontSize: '20px',
+    color: '#721c24',
+    backgroundColor: '#f8d7da',
+    border: '1px solid #f5c6cb',
+    borderRadius: '5px',
+    padding: '20px',
+  }
+};
+
 
 export default LayoutProvider

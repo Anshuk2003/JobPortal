@@ -12,7 +12,7 @@ export async function GET(request: NextRequest) {
       const { searchParams } = new URL(request.url);
       const user = searchParams.get("user");
       const searchText = searchParams.get("searchText");
-      console.log("Backend:", searchText)
+      // console.log("Backend:", searchText)
       const filtersObject: any = {};
       if (user) {
         filtersObject["user"] = user;
@@ -20,17 +20,17 @@ export async function GET(request: NextRequest) {
   
       if (searchText && searchText !== "") {
         const keywords = searchText.split(',').map(keyword => keyword.trim())
-        console.log('Keywords:', keywords);
+        // console.log('Keywords:', keywords);
         filtersObject['description'] = { $regex: keywords.join('|'), $options: 'i' };
       }
-      console.log(filtersObject)
+      // console.log(filtersObject)
       const jobs = await Job.find(filtersObject).populate("user");
       return NextResponse.json({
         message: "Jobs fetched successfully",
         data: jobs,
       });
     } catch (error: any) {
-      console.log(error);
+      // console.log(error);
       return NextResponse.json({ message: error.message }, { status: 500 });
     }
   }
