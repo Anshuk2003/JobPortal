@@ -23,7 +23,7 @@ export const sendMail = async({email, emailType, userId}:any) => {
             });
 
         const mailOptions = {
-            from: 'hitesh@gmail.com',
+            from: 'anshukalbande@gmail.com',
             to: email,
             subject: emailType === "VERIFY" ? "Verify your email" : "Reset your password",
             html: `<p>Click <a href="${process.env.DOMAIN}/verifyemail?token=${hashedToken}">here</a> to ${emailType === "VERIFY" ? "verify your email" : "reset your password"}
@@ -31,8 +31,7 @@ export const sendMail = async({email, emailType, userId}:any) => {
             </p>`
         }
 
-        const mailresponse = await transporter.sendMail
-        (mailOptions);
+        const mailresponse = await transporter.sendMail(mailOptions);
         return mailresponse;
 
     } catch (error:any) {
